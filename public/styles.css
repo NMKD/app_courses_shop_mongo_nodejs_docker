@@ -1,0 +1,50 @@
+.nav-wrapper {
+    padding: 0 2rem;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.price {
+    font-size: 1.5rem;
+}
+
+.price.total-table__price {
+    font-size: 1rem;
+}
+
+.course {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.course h1 {
+    margin-bottom: 1.5rem;
+}
+
+.course img {
+    max-width: 400px;
+    height: auto;
+}
+
+.card.card-height{
+    max-height: 25%;
+}
+
+.card-action.flex {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.total {
+    padding: 1.5rem 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+}
