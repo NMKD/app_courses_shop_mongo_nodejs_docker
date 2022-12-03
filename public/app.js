@@ -16,6 +16,7 @@ CARD_HTML.addEventListener('click', (e) => {
     if (e.target.classList.contains('js-remove')) {
         const id = e.target.dataset.id
         fetch(`/card/remove/${id}`, { method: 'delete' }).then(response => response.json()).then(result => {
+            console.log(result)
             if (result.courses.length) {
                 const html = result.courses.map(c => {
                     return `
@@ -30,7 +31,7 @@ CARD_HTML.addEventListener('click', (e) => {
                     `
                 }).join('')
                 CARD_HTML.querySelector('tbody').innerHTML = html
-                document.querySelector('#total-price').textContent = toCurrency(result.price)
+                document.querySelector('#total-price').textContent = toCurrency(result.total)
             } else {
                 CARD_HTML.innerHTML = `<p>Корзина пуста</p>`
             }
