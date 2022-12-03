@@ -1,6 +1,6 @@
 const {Schema, model} = require('mongoose')
 
-const user = new Schema({
+const userSchema = new Schema({
     email: {
         type: String,
         required: true
@@ -27,4 +27,21 @@ const user = new Schema({
     }
 })
 
-module.exports = model("User", user)
+userSchema.methods.addToCart = function(course) {
+    const items = [...this.cart.items]
+    const i = items.findIndex(c => c.courseId.toString() === course._id.toString())
+
+    if (i >= 0) {
+        items[i].count++
+    } else {
+        items.push({
+            courseId: course._id,
+            count: 1
+        })
+    }
+
+    this.cart = {items}
+    return this.save()
+}
+
+module.exports = model("User", userSchema)

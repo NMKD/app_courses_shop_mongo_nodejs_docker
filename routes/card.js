@@ -1,28 +1,27 @@
 const {Router} = require('express')
 const router = Router()
 const Course = require('../models/course')
-const Card = require('../models/card')
-const currencyFormatter = require('currency-formatter');
 
 router.get('/', async (req, res) => {
-    const card = await Card.fetch()
+    const card = await Course.find()
     res.render('card', {
         isCard: true,
         title: `Корзина`,
         courses: card.courses,
         priceJson: card.price
     })
+    res.json({items: 'course'})
 })
 
 router.post('/add', async (req, res) => {
-    const course = await Course.getId(req.body.id)
-    await Card.add(course)
+    const course = await Course.findById(req.body.id)
+    await req.user.addToCart(course)
     res.redirect('/card')
 })
 
 router.delete('/remove/:id', async (req, res) => {
-    const card = await Card.remove(req.params.id)
-    res.status(200).json(card)
+    // const cart = await Course.deleteOne(req.params.id)
+    res.status(200).json(cart)
 })
 
 module.exports = router

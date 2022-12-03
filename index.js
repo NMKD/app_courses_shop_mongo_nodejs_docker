@@ -21,6 +21,16 @@ app.set('view engine', 'hbs')
 // где будут шаблоны
 app.set('views', 'views')
 
+app.use(async (req, res, next) => {
+    try {
+        req.user = await User.findById('637bd0d10e406befd3a41a7e')
+        // console.log(req.user)
+        next()
+    } catch (e) {
+        console.log(e.message)
+    }
+})
+
 app.use(express.static(path.join(__dirname, 'public')))
 app.use(express.urlencoded({ extended: true }))
 app.use('/', require('./routes/home'))
@@ -40,14 +50,14 @@ async function start() {
         const candidate = await User.findOne()
         if (!candidate) {
             const user = new User({
-                email: 'bla.bla@bk.ru',
+                email: 'kristina.kryazheva@bk.ru',
                 name: 'Kristina', 
                 cart: {items: []}
             })
 
             await user.save()
         }
-        console.log(candidate)
+        // console.log(candidate)
         app.listen(PORT, () => {
             console.log('Server is running on PORT: ', PORT)
         })
@@ -59,6 +69,3 @@ async function start() {
 }
 
 start()
-
-
-
