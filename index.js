@@ -37,6 +37,7 @@ app.use('/', require('./routes/home'))
 app.use('/add', require('./routes/add'))
 app.use('/courses', require('./routes/courses'))
 app.use('/card', require('./routes/card'))
+app.use('/orders', require('./routes/orders'))
 
 const PORT = process.env.PORT || 3000
 

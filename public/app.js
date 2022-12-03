@@ -9,6 +9,24 @@ document.querySelectorAll('.price').forEach(node => {
     node.textContent = toCurrency(node.textContent)
 })
 
+const slider = document.querySelectorAll('.slide')
+const conteiner = document.querySelector('.header')
+
+// slider for main 
+
+conteiner.addEventListener('click', (e) => {
+    clearActivaClass()
+    e.target.classList.add('active_flex')
+    console.log(e.target)
+})
+
+function clearActivaClass() {
+    slider.forEach(element => {
+        element.classList.remove('active_flex')
+        console.log(element)
+    })
+} 
+
 const CARD_HTML = document.querySelector('#card')
 CARD_HTML.addEventListener('click', (e) => {
     e.preventDefault()
@@ -38,5 +56,6 @@ CARD_HTML.addEventListener('click', (e) => {
         })
     }
 })
+
 
 

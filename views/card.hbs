@@ -2,7 +2,7 @@
 
 <div id="card">
     {{#if courses.length}}
-    <table class="striped">
+    <table class="striped centered">
         <thead>
             <tr>
                 <th>Название</th>
@@ -11,7 +11,7 @@
                 <th>Действия</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody class="grey lighten-5 black-text">
             {{#each courses}}
 
 
@@ -20,7 +20,9 @@
                 <td id="count">{{count}}</td>
                 <td class="price total-table__price">{{price}}</td>
                 <td>
-                    <button type="submit" class="btn-floating btn-small waves-effect waves-light red js-remove js-remove material-icons" data-id="{{id}}">remove</button>
+                    <button type="submit"
+                        class="btn-floating btn-small waves-effect waves-light red js-remove js-remove material-icons"
+                        data-id="{{id}}">remove</button>
                 </td>
             </tr>
 
@@ -31,11 +33,15 @@
     <div class="total">
         <div>
             <strong>
-                Итого:
+                Сумма заказа:
             </strong>
+            <div class="price total-table__price" id="total-price">{{total}}</div>
         </div>
-        <div class="price total-table__price" id="total-price">{{total}}</div>
+        <form action="/orders" method="post">
+            <button type="submit" class="btn">Заказать</button>
+        </form>
     </div>
+
     {{else}}
     <p>Корзина пуста</p>
     {{/if}}

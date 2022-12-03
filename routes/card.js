@@ -1,7 +1,6 @@
 const {Router} = require('express')
 const router = Router()
 const Course = require('../models/course')
-const { count } = require('../models/user')
 
 const computePrice = (cousres) => {
    return cousres.reduce((total, course) => {
