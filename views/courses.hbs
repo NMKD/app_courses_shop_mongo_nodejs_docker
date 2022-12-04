@@ -1,7 +1,7 @@
 <h1>Список курсов</h1>
 <div class="row">
-{{#if courses.length}}
-{{#each courses}}
+    {{#if courses.length}}
+    {{#each courses}}
 
     <div class="col s12 m6 l6 black-text">
         <div class="card hoverable">
@@ -12,19 +12,24 @@
                 <span class="card-title">{{title}}</span>
                 <p class="price">{{price}}</p>
             </div>
-            <div class="card-action flex">
-                <a class="blue-text text-darken-1" href="/courses/{{id}}" target="_blank">Подробнее</a>
-                <a class="blue-text text-darken-1" href="/courses/{{id}}/edit?allow=true">Редактировать</a>
+            <div class="card-action flex black">
+                <div>
+                    <p class="align-center">
+                        <a class="blue-text yellow-text text-darken-1" href="/courses/{{id}}"
+                            target="_blank">Подробнее</a>
+                        <a class="blue-text text-darken-1" href="/courses/{{id}}/edit?allow=true">Редактировать</a>
+                    </p>
+                </div>
                 <form action="/card/add" method="post">
-                <input type="hidden" name="id" value={{id}}>
-                <button type="submit" class="btn btn-primary">Купить</button>
+                    <input type="hidden" name="id" value={{id}}>
+                    <button type="submit" class="btn amber darken-4">Купить</button>
                 </form>
             </div>
         </div>
     </div>
 
-{{/each}}
-{{else}}
-<p>Курсов пока нет</p>
-{{/if}}
+    {{/each}}
+    {{else}}
+    <p>Курсов пока нет</p>
+    {{/if}}
 </div>

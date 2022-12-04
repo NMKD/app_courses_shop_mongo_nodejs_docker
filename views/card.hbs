@@ -3,7 +3,7 @@
 <div id="card">
     {{#if courses.length}}
     <table class="striped centered">
-        <thead>
+        <thead class="black">
             <tr>
                 <th>Название</th>
                 <th>Кол-во</th>
@@ -38,7 +38,7 @@
             <div class="price total-table__price" id="total-price">{{total}}</div>
         </div>
         <form action="/orders" method="post">
-            <button type="submit" class="btn">Заказать</button>
+            <button type="submit" class="btn amber darken-4">Заказать</button>
         </form>
     </div>
 
