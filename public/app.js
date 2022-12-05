@@ -5,27 +5,44 @@ const toCurrency = price => {
     }).format(price)
 }
 
+const toDate = date => {
+    return new Intl.DateTimeFormat('ru-Ru', {
+        day: '2-digit',
+        month: 'long',
+        year: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit'
+    }).format(new Date(date))
+}
+
 document.querySelectorAll('.price').forEach(node => {
     node.textContent = toCurrency(node.textContent)
 })
 
+document.querySelectorAll('.date').forEach(node => {
+    node.textContent = toDate(node.textContent)
+})
+
 const slider = document.querySelectorAll('.slide')
-const conteiner = document.querySelector('.header')
+const container = document.querySelector('.header')
 
 // slider for main 
+if (container) {
+    container.addEventListener('click', (e) => {
+        clearActivaClass()
+        e.target.classList.add('active_flex')
+    })
+} 
 
-conteiner.addEventListener('click', (e) => {
-    clearActivaClass()
-    e.target.classList.add('active_flex')
-    console.log(e.target)
-})
 
 function clearActivaClass() {
     slider.forEach(element => {
         element.classList.remove('active_flex')
         console.log(element)
     })
-} 
+}
+
 
 const CARD_HTML = document.querySelector('#card')
 CARD_HTML.addEventListener('click', (e) => {
@@ -34,7 +51,7 @@ CARD_HTML.addEventListener('click', (e) => {
     if (e.target.classList.contains('js-remove')) {
         const id = e.target.dataset.id
         fetch(`/card/remove/${id}`, { method: 'delete' }).then(response => response.json()).then(result => {
-            console.log(result)
+            // console.log(e.target)
             if (result.courses.length) {
                 const html = result.courses.map(c => {
                     return `

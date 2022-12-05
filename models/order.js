@@ -16,7 +16,7 @@ const schemaOrder = new Schema({
     ],
     user: {
         name: String,
-        userid: {
+        userId: {
             type: Schema.Types.ObjectId,
             ref: "User",
             required: true
