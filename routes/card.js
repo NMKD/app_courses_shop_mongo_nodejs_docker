@@ -19,7 +19,7 @@ const mapToCart = (user) => {
 router.get('/', async (req, res) => {
     const user = await req.user.populate(['cart.items.courseId'])
     const cousres = mapToCart(user)
-    console.log(cousres)
+    // console.log(cousres)
     res.render('card', {
         isCard: true,
         title: `Корзина`,
