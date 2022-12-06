@@ -74,11 +74,10 @@ body {
     height: 100vh;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: stretch;
 }
 
 .slide {
-    height: 95vh;
     border-radius: 15px;
     padding: 0 20px;
     margin: 0 5px;

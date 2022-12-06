@@ -33,7 +33,7 @@ if (container) {
         clearActivaClass()
         e.target.classList.add('active_flex')
     })
-} 
+}
 
 
 function clearActivaClass() {
@@ -43,6 +43,9 @@ function clearActivaClass() {
     })
 }
 
+if (document.querySelectorAll('.tabs')) {
+    var instance = M.Tabs.init(document.querySelectorAll('.tabs'));
+}
 
 const CARD_HTML = document.querySelector('#card')
 CARD_HTML.addEventListener('click', (e) => {
@@ -73,6 +76,4 @@ CARD_HTML.addEventListener('click', (e) => {
         })
     }
 })
-
-
 
