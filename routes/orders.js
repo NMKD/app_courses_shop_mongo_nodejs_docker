@@ -11,7 +11,7 @@ router.get('/', async (req, res) => {
             isOrder: true,
             title: 'Заказы',
             orders: orders.map(c => {
-                console.log(c)
+                // console.log(c)
                 return {
                     ...c._doc,
                     price: c.courses.reduce((total, course) => {
