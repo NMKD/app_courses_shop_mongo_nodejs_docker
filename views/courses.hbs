@@ -17,13 +17,17 @@
                     <p class="align-center">
                         <a class="blue-text yellow-text text-darken-1" href="/courses/{{id}}"
                             target="_blank">Подробнее</a>
-                        <a class="blue-text text-darken-1" href="/courses/{{id}}/edit?allow=true">Редактировать</a>
+                            {{#if @root.isAuth}}
+                            <a class="blue-text text-darken-1" href="/courses/{{id}}/edit?allow=true">Редактировать</a>
+                            {{/if}}
                     </p>
                 </div>
+                {{#if @root.isAuth}}
                 <form action="/card/add" method="post">
                     <input type="hidden" name="id" value={{id}}>
                     <button type="submit" class="btn amber darken-4">Купить</button>
                 </form>
+                {{/if}}
             </div>
         </div>
     </div>

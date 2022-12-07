@@ -1,5 +1,6 @@
 const { Router } = require('express')
 const router = Router()
+const User = require('../models/user')
 
 router.get('/login', async (req, res) => {
     res.render('auth/login', {
@@ -15,8 +16,16 @@ router.get('/logout', async (req, res) => {
 })
 
 router.post('/login', async (req, res) => {
+    const user = await User.findById('637bd0d10e406befd3a41a7e')
+    req.session.user = user
     req.session.isAuthenticated = true
-    res.redirect('/')
+    // чтобы успели данные попасть в сессию до того, как произойдет render на главную страницу, сохраняем сессию method save
+    req.session.save(err => {
+        if (err) {
+            throw err
+        }
+        res.redirect('/')
+    })
 })
 
 
