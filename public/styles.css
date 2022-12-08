@@ -113,3 +113,15 @@ body {
     opacity: 1;
     transition:  opacity 0.3s ease-in 0.4s;
 }
+
+/* for register && login - ALERT errors */
+
+.alert {
+    padding: 2.5rem 1rem;
+    border-radius: 15px;
+    text-align: center;
+    margin-bottom: 1rem;
+    background: rgba(255, 115, 0, 0.149);
+    color: brown;
+    font-size: 1.5em;
+}

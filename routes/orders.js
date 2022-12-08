@@ -1,13 +1,12 @@
 const { Router } = require('express')
 const Order = require('../models/order')
-const router = Router()
 const auth = require('../middleware/auth')
+const router = Router()
 
 router.get('/', auth, async (req, res) => {
     try {
         const orders = await Order.find({'user.userId': req.user._id}).populate(['user.userId'])
-        // await Order.deleteOne(orders[0])
-        // console.log(orders)
+        // await Order.deleteMany({'user.userId': req.user._id})
         res.render('orders', {
             isOrder: true,
             title: 'Заказы',

@@ -1,6 +1,7 @@
 const express = require('express')
 const path = require('path')
 const csrf = require('csurf')
+const flesh = require('connect-flash')
 const exphbs = require('express-handlebars')
 const session = require('express-session')
 const MongoStore = require('connect-mongodb-session')(session)
@@ -37,6 +38,7 @@ app.use(session({
     store: store
 }))
 app.use(csrf())
+app.use(flesh())
 app.use(require('./middleware/variables'))
 app.use(require('./middleware/user'))
 app.use('/', require('./routes/home'))

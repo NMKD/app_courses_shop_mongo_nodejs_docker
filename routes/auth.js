@@ -1,18 +1,21 @@
 const { Router } = require('express')
-const router = Router()
 const User = require('../models/user')
 const bcrypt = require('bcryptjs')
+const router = Router()
 
 router.get('/login', async (req, res) => {
     res.render('auth/login', {
         title: 'Авторизация',
-        isLogin: true
+        isLogin: true,
+        errorLogin: req.flash('errorLogin'),
+        errorRegister: req.flash('errorRegister')
+
     })
 })
 
 router.get('/logout', async (req, res) => {
     req.session.destroy(() => {
-        res.redirect('/auth/login#login')
+        res.redirect('/')
     })
 })
 
@@ -33,8 +36,12 @@ router.post('/login', async (req, res) => {
                     }
                     res.redirect('/')
                 })
-            } 
+            } else {
+                req.flash('errorLogin', 'Пароль неверный')
+                res.redirect('/auth/login#login')
+            }
         } else {
+            req.flash('errorLogin', 'Такого пользователя не существует')
             res.redirect('/auth/login#register')
         }
 
@@ -48,7 +55,8 @@ router.post('/register', async (req, res) => {
         const { name, email, password, confirm } = req.body
         const candidate = await User.findOne({ email })
         if (candidate) {
-            res.redirect('/auth/login#login')
+            req.flash('errorRegister', 'Пользователь с таким именем или email уже существует')
+            res.redirect('/auth/login#register')
         } else {
             const user = new User({ email, name, password: await bcrypt.hash(password, 10), cart: { items: [] } })
             await user.save()
