@@ -20,6 +20,7 @@
                     <label for="password">Пароль для входа</label>
                     <span class="helper-text" data-error="Пароль должен содержать не менее 8 символов"></span>
                 </div>
+                <input type="hidden" name="_csrf" value="{{csrf}}">
                 <button class="btn amber darken-4" type="submit">Войти</button>
             </form>
         </div>
@@ -48,6 +49,7 @@
                     <label for="confirm">Введите пароль еще раз</label>
                     <span class="helper-text" data-error="Пароль должен содержать не менее 8 символов"></span>
                 </div>
+                <input type="hidden" name="_csrf" value="{{csrf}}">
                 <button class="btn amber darken-4" type="submit">Зарегистрироваться</button>
             </form>
 

@@ -1,5 +1,6 @@
 const express = require('express')
 const path = require('path')
+const csrf = require('csurf')
 const exphbs = require('express-handlebars')
 const session = require('express-session')
 const MongoStore = require('connect-mongodb-session')(session)
@@ -35,6 +36,7 @@ app.use(session({
     saveUninitialized: false,
     store: store
 }))
+app.use(csrf())
 app.use(require('./middleware/variables'))
 app.use(require('./middleware/user'))
 app.use('/', require('./routes/home'))
@@ -62,6 +64,3 @@ async function start() {
 }
 
 start()
-
-// В файле public/app.js в генерируемой html разметке после удаления товара из корзины также необходимо добавить 
-// атрибут data-csrf="${csrf}" для кнопки .js-remove

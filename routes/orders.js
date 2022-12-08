@@ -1,5 +1,4 @@
 const { Router } = require('express')
-const order = require('../models/order')
 const Order = require('../models/order')
 const router = Router()
 const auth = require('../middleware/auth')
@@ -7,6 +6,7 @@ const auth = require('../middleware/auth')
 router.get('/', auth, async (req, res) => {
     try {
         const orders = await Order.find({'user.userId': req.user._id}).populate(['user.userId'])
+        // await Order.deleteOne(orders[0])
         // console.log(orders)
         res.render('orders', {
             isOrder: true,
@@ -46,7 +46,7 @@ router.post('/', auth, async (req, res) => {
 
         await order.save()
         await req.user.clearCart()
-        // console.log(order)
+        console.log(order)
         res.redirect('orders')
     } catch (err) {
         console.log(err)
