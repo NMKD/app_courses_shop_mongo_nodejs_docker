@@ -36,7 +36,7 @@ app.use(session({
     store: store
 }))
 app.use(require('./middleware/variables'))
-
+app.use(require('./middleware/user'))
 app.use('/', require('./routes/home'))
 app.use('/add', require('./routes/add'))
 app.use('/courses', require('./routes/courses'))
@@ -62,3 +62,6 @@ async function start() {
 }
 
 start()
+
+// В файле public/app.js в генерируемой html разметке после удаления товара из корзины также необходимо добавить 
+// атрибут data-csrf="${csrf}" для кнопки .js-remove
