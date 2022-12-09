@@ -5,15 +5,18 @@ const flesh = require('connect-flash')
 const exphbs = require('express-handlebars')
 const session = require('express-session')
 const MongoStore = require('connect-mongodb-session')(session)
-const {allowInsecurePrototypeAccess} = require('@handlebars/allow-prototype-access')
+const { allowInsecurePrototypeAccess } = require('@handlebars/allow-prototype-access')
 const Handlebars = require("handlebars");
 const mongoose = require('mongoose')
-
+const dotenv = require('dotenv')
 const app = express()
-const MONGODB_URI = 'mongodb://localhost:27017/shop-courses'
+
+// Import dotenv
+dotenv.config()
+
 const store = new MongoStore({
     collection: 'sessions',
-    uri: MONGODB_URI
+    uri: process.env.MONGODB_URI
 })
 
 // express-handlebars
@@ -32,11 +35,12 @@ app.set('views', 'views')
 app.use(express.static(path.join(__dirname, 'public')))
 app.use(express.urlencoded({ extended: true }))
 app.use(session({
-    secret: 'some secret value',
+    secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
     store: store
 }))
+
 app.use(csrf())
 app.use(flesh())
 app.use(require('./middleware/variables'))
@@ -52,13 +56,14 @@ const PORT = process.env.PORT || 3000
 // mongo db DOCKER
 async function start() {
     try {
-        mongoose.connect(MONGODB_URI, {
+        mongoose.connect(process.env.MONGODB_URI, {
             useNewUrlParser: true,
             useUnifiedTopology: true
         })
         console.log('MongoDB server connect')
+        console.log(process.env.MY_NAME_IS)
         app.listen(PORT, () => {
-            console.log('Server is running on PORT: ', PORT)
+            console.log('Server is running on PORT:', PORT)
         })
     } catch (e) {
         console.log(e.message)

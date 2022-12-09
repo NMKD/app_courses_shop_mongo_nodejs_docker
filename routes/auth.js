@@ -1,6 +1,7 @@
 const { Router } = require('express')
 const User = require('../models/user')
 const bcrypt = require('bcryptjs')
+const transporter = require('../middleware/mail')
 const router = Router()
 
 router.get('/login', async (req, res) => {
@@ -9,7 +10,6 @@ router.get('/login', async (req, res) => {
         isLogin: true,
         errorLogin: req.flash('errorLogin'),
         errorRegister: req.flash('errorRegister')
-
     })
 })
 
@@ -52,6 +52,7 @@ router.post('/login', async (req, res) => {
 
 router.post('/register', async (req, res) => {
     try {
+        let emailTransporter = await transporter();
         const { name, email, password, confirm } = req.body
         const candidate = await User.findOne({ email })
         if (candidate) {
@@ -61,6 +62,20 @@ router.post('/register', async (req, res) => {
             const user = new User({ email, name, password: await bcrypt.hash(password, 10), cart: { items: [] } })
             await user.save()
             res.redirect('/auth/login#login')
+            emailTransporter.sendMail({
+                from: process.env.SENDER_EMAIL,
+                to: email,
+                subject: 'Регистрация прошла успешно!',
+                text: `</h2>Добрый день, ${name}</h2>
+                       <p>Вы успешно создали аккаунт!</p>
+                `,
+              }, function(err, info) {
+                if (err) {
+                    console.log(err)
+                } else {
+                    console.log('Письмо отправлено на адрес:' + email + info.response)
+                }
+            })
         }
     } catch (err) {
         console.log(err.message)

@@ -12,7 +12,7 @@
             <p class="alert">{{errorLogin}}</p>
             {{/if}}
             <h2>Войти</h2>
-            <form action="/auth/login" method="POST">
+            <form action="/auth/login" method="POST" enctype="multipart/form-data">
                 <div class="input-field">
                     <input id="email" name="email" type="email" class="validate white-text" required>
                     <label for="email">Email</label>
@@ -33,7 +33,7 @@
             <p class="alert">{{errorRegister}}</p>
             {{/if}}
             <h2>Регистрация</h2>
-            <form action="/auth/register" method="POST">
+            <form action="/auth/register" method="POST" enctype="multipart/form-data">
                 <div class="input-field">
                     <input id="text" name="name" type="text" class="validate white-text" required>
                     <label for="text">Имя пользователя</label>
