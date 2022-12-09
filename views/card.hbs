@@ -30,20 +30,19 @@
             {{/each}}
         </tbody>
     </table>
-    <div class="total">
-        <div>
-            <strong>
-                Сумма заказа:
-            </strong>
-            <div class="price total-table__price" id="total-price">{{total}}</div>
-        </div>
-        <form action="/orders" method="post">
-            <input type="hidden" name="_csrf" value="{{csrf}}">
-            <button type="submit" class="btn amber darken-4">Заказать</button>
-        </form>
-    </div>
-
     {{else}}
     <p>Корзина пуста</p>
     {{/if}}
+</div>
+<div class="total">
+    <div>
+        <strong>
+            Сумма заказа:
+        </strong>
+        <div class="price total-table__price" id="total-price">{{total}}</div>
+    </div>
+    <form action="/orders" method="post">
+        <input type="hidden" name="_csrf" value="{{csrf}}">
+        <button type="submit" class="btn amber darken-4">Заказать</button>
+    </form>
 </div>

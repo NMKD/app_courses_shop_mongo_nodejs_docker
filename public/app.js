@@ -44,7 +44,7 @@ function clearActivaClass() {
 }
 
 if (document.querySelectorAll('.tabs')) {
-    var instance = M.Tabs.init(document.querySelectorAll('.tabs'));
+    M.Tabs.init(document.querySelectorAll('.tabs'));
 }
 
 const CARD_HTML = document.querySelector('#card')
