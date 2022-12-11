@@ -23,7 +23,7 @@ router.post('/login', async (req, res) => {
     try {
         const { email, password } = req.body
         const candidate = await User.findOne({ email })
-        // console.log(candidate)
+        console.log(candidate)
         if (candidate) {
             const passIs = await bcrypt.compare(password, candidate.password)
             if (passIs) {
@@ -66,8 +66,8 @@ router.post('/register', async (req, res) => {
                 from: process.env.SENDER_EMAIL,
                 to: email,
                 subject: 'Регистрация прошла успешно!',
-                text: `</h2>Добрый день, ${name}</h2>
-                       <p>Вы успешно создали аккаунт!</p>
+                text: `Добрый день, ${name}
+                    Вы успешно создали аккаунт!
                 `,
               }, function(err, info) {
                 if (err) {

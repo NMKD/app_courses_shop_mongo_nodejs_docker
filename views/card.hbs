@@ -22,7 +22,7 @@
                 <td>
                     <button type="submit"
                         class="btn-floating btn-small waves-effect waves-light red js-remove material-icons"
-                        data-id="{{id}}" data-csrf="{{@root.csrf}}">remove</button>
+                        data-id="{{id}}">remove</button>
                 </td>
             </tr>
 
@@ -42,7 +42,6 @@
         <div class="price total-table__price" id="total-price">{{total}}</div>
     </div>
     <form action="/orders" method="post">
-        <input type="hidden" name="_csrf" value="{{csrf}}">
         <button type="submit" class="btn amber darken-4">Заказать</button>
     </form>
 </div>

@@ -55,12 +55,8 @@ if (CARD_HTML) {
 
         if (e.target.classList.contains('js-remove')) {
             const id = e.target.dataset.id
-            const csrf = e.target.dataset.csrf
             fetch(`/card/remove/${id}`, {
-                method: 'delete',
-                headers: {
-                    'X-XSRF-TOKEN': csrf
-                }
+                method: 'delete'
             }).then(response => response.json())
                 .then(result => {
                     // console.log(e.target)
@@ -72,7 +68,7 @@ if (CARD_HTML) {
                         <td id="count">${c.count}</td>
                         <td class="price total-table__price">${toCurrency(c.price)}</td>
                         <td>
-                            <button class="btn-floating btn-small waves-effect waves-light red js-remove js-remove material-icons" data-id="${c.id}" data-csrf="${csrf}">remove</button>
+                            <button class="btn-floating btn-small waves-effect waves-light red js-remove js-remove material-icons" data-id="${c.id}">remove</button>
                         </td>
                         </tr>
                         `

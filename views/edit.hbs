@@ -17,13 +17,11 @@
         <label for="img">URL картинки</label>
         <span class="helper-text" data-error="Укажите ссылку на картинку"></span>
     </div>
-    <input type="hidden" name="_csrf" value="{{csrf}}">
     <input type="hidden" name="id" value={{course.id}}>
     <button type="submit" class="btn btn-primary">Изменить</button>
 </form>
 
 <form action="/courses/delete" style="margin: 2em 0;" method="POST">
-    <input type="hidden" name="_csrf" value="{{csrf}}">
     <input type="hidden" name="id" value={{course.id}}>
     <button type="submit" class="btn waves-effect red" data-id="{{id}}">remove</button>
 </form>

@@ -1,14 +1,15 @@
 const express = require('express')
 const path = require('path')
-const csrf = require('csurf')
+// const helmet = require("helmet")
 const flesh = require('connect-flash')
 const exphbs = require('express-handlebars')
 const session = require('express-session')
 const MongoStore = require('connect-mongodb-session')(session)
 const { allowInsecurePrototypeAccess } = require('@handlebars/allow-prototype-access')
-const Handlebars = require("handlebars");
+const Handlebars = require("handlebars")
 const mongoose = require('mongoose')
 const dotenv = require('dotenv')
+
 const app = express()
 
 // Import dotenv
@@ -41,7 +42,7 @@ app.use(session({
     store: store
 }))
 
-app.use(csrf())
+// app.use(helmet())
 app.use(flesh())
 app.use(require('./middleware/variables'))
 app.use(require('./middleware/user'))
@@ -52,6 +53,7 @@ app.use('/card', require('./routes/card'))
 app.use('/orders', require('./routes/orders'))
 app.use('/auth', require('./routes/auth'))
 
+
 const PORT = process.env.PORT || 3000
 // mongo db DOCKER
 async function start() {
@@ -61,7 +63,7 @@ async function start() {
             useUnifiedTopology: true
         })
         console.log('MongoDB server connect')
-        console.log(process.env.MY_NAME_IS)
+        console.log(typeof process.env.MY_NAME_IS)
         app.listen(PORT, () => {
             console.log('Server is running on PORT:', PORT)
         })

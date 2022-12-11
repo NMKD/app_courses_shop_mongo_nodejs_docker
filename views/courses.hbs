@@ -24,7 +24,6 @@
                 </div>
                 {{#if @root.isAuth}}
                 <form action="/card/add" method="post">
-                    <input type="hidden" name="_csrf" value="{{@root.csrf}}">
                     <input type="hidden" name="id" value={{id}}>
                     <button type="submit" class="btn amber darken-4">Купить</button>
                 </form>

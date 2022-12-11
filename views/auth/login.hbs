@@ -12,7 +12,7 @@
             <p class="alert">{{errorLogin}}</p>
             {{/if}}
             <h2>Войти</h2>
-            <form action="/auth/login" method="POST" enctype="multipart/form-data">
+            <form action="/auth/login" method="POST">
                 <div class="input-field">
                     <input id="email" name="email" type="email" class="validate white-text" required>
                     <label for="email">Email</label>
@@ -23,7 +23,6 @@
                     <label for="password">Пароль для входа</label>
                     <span class="helper-text" data-error="Пароль должен содержать не менее 8 символов"></span>
                 </div>
-                <input type="hidden" name="_csrf" value="{{csrf}}">
                 <button class="btn amber darken-4" type="submit">Войти</button>
             </form>
         </div>
@@ -33,7 +32,7 @@
             <p class="alert">{{errorRegister}}</p>
             {{/if}}
             <h2>Регистрация</h2>
-            <form action="/auth/register" method="POST" enctype="multipart/form-data">
+            <form action="/auth/register" method="POST">
                 <div class="input-field">
                     <input id="text" name="name" type="text" class="validate white-text" required>
                     <label for="text">Имя пользователя</label>
@@ -54,7 +53,6 @@
                     <label for="confirm">Введите пароль еще раз</label>
                     <span class="helper-text" data-error="Пароль должен содержать не менее 8 символов"></span>
                 </div>
-                <input type="hidden" name="_csrf" value="{{csrf}}">
                 <button class="btn amber darken-4" type="submit">Зарегистрироваться</button>
             </form>
 
