@@ -1,0 +1,20 @@
+<div class="section">
+    <div class="row">
+
+        <div id="login" class="col s6 offset-s3">
+            {{#if error}}
+            <p class="alert">{{error}}</p>
+            {{/if}}
+            <h2>Восстановление пароль</h2>
+            <form action="/auth/reset" method="POST">
+                <div class="input-field">
+                    <input id="email" name="email" type="email" class="validate white-text" required>
+                    <label for="email">Email</label>
+                    <span class="helper-text" data-error="Введите email"></span>
+                </div>
+                <button class="btn amber darken-4" type="submit">Сбросить</button>
+            </form>
+        </div>
+
+    </div>
+</div>

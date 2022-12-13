@@ -1,0 +1,31 @@
+<div class="section">
+    <div class="row">
+
+        <div id="login" class="col s6 offset-s3">
+            {{#if error}}
+            <p class="alert">{{error}}</p>
+            {{/if}}
+            <h2>Новый пароль</h2>
+            <form action="/auth/password/{{token}}/{{id}}" method="POST">
+
+                <div class="input-field">
+                    <input id="email" name="password" type="password" class="validate white-text" required>
+                    <label for="password">Новый пароль</label>
+                    <span class="helper-text" data-error="Введите пароль"></span>
+                </div>
+
+                <div class="input-field">
+                    <input id="confirm" name="confirm" type="password" class="validate white-text" required min="1">
+                    <label for="confirm">Введите пароль еще раз</label>
+                    <span class="helper-text" data-error="Пароль должен содержать не менее 8 символов"></span>
+                </div>
+
+                <input type="hidden" name="id" value="{{id}}">
+                <input type="hidden" name="token" value="{{token}}">
+
+                <button class="btn amber darken-4" type="submit">Отправить</button>
+            </form>
+        </div>
+
+    </div>
+</div>

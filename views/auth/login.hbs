@@ -13,6 +13,7 @@
             {{/if}}
             <h2>Войти</h2>
             <form action="/auth/login" method="POST">
+            
                 <div class="input-field">
                     <input id="email" name="email" type="email" class="validate white-text" required>
                     <label for="email">Email</label>
@@ -23,6 +24,11 @@
                     <label for="password">Пароль для входа</label>
                     <span class="helper-text" data-error="Пароль должен содержать не менее 8 символов"></span>
                 </div>
+
+                <p>
+                    <a href="/auth/reset">Забыли пароль?</a><br>
+                </p>
+
                 <button class="btn amber darken-4" type="submit">Войти</button>
             </form>
         </div>

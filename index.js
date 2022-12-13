@@ -76,8 +76,8 @@ async function start() {
             useNewUrlParser: true,
             useUnifiedTopology: true
         })
-        console.log('MongoDB server connect')
-        console.log(typeof process.env.MY_NAME_IS)
+        // console.log('MongoDB server connect')
+        // console.log(typeof process.env.MY_NAME_IS)
         app.listen(PORT, () => {
             console.log('Server is running on PORT:', PORT)
         })
