@@ -1,6 +1,6 @@
 const express = require('express')
 const path = require('path')
-// const helmet = require("helmet")
+const helmet = require("helmet")
 const flesh = require('connect-flash')
 const exphbs = require('express-handlebars')
 const session = require('express-session')
@@ -42,7 +42,21 @@ app.use(session({
     store: store
 }))
 
-// app.use(helmet())
+app.use(
+    helmet.contentSecurityPolicy({
+        useDefaults: false,
+        directives: {
+            "default-src": ["'self'"],
+            "script-src": ["'self'", "https://*.cloudflare.com", "*.googleapis.com"],
+            "style-src": ["'self'", "https://*.cloudflare.com", "*.googleapis.com", "https://*.unsplash.com", "unsafe-inline"],
+            "img-src": ["'self'", "*"],
+            "font-src": ["'self'", "*"],
+            "object-src": ["'none'"]
+        },
+    })
+);
+
+app.disable('x-powered-by')
 app.use(flesh())
 app.use(require('./middleware/variables'))
 app.use(require('./middleware/user'))
