@@ -4,12 +4,16 @@ const router = Router()
 const auth = require('../middleware/auth')
 
 router.get('/', async (req, res) => {
-    const courses = await Course.find()
-    res.render('courses', {
-        title: "Список курсов",
-        isCourses: true,
-        courses
-    })
+    try {
+        const courses = await Course.find()
+        res.render('courses', {
+            title: "Список курсов",
+            isCourses: true,
+            courses
+        })
+    } catch (e) {
+        console.log(e)
+    }
 })
 
 router.get('/:id/edit', auth, async (req, res) => {
@@ -32,7 +36,7 @@ router.post('/edit', auth, async (req, res) => {
 
 router.post('/delete', auth, async (req, res) => {
     try {
-        await Course.deleteOne({_id: req.body.id})
+        await Course.deleteOne({ _id: req.body.id })
         res.redirect('/courses')
     } catch (e) {
         console.log(e)
