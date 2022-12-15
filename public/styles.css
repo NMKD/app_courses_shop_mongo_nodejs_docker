@@ -126,3 +126,13 @@ body {
     color: brown;
     font-size: 1.5em;
 }
+
+.absolute {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+.relative {
+    position: relative;
+}

@@ -1,27 +1,30 @@
 <h1>Редактировать курс - {{course.title}}</h1>
 
-<form action="/courses/edit" method="POST">
-    <div class="input-field">
-        <input id="title" name="title" type="text" class="validate white-text" required value={{course.title}}>
-        <label for="title">Название курса</label>
-        <span class="helper-text" data-error="Введите наименование курса"></span>
+<div class="relative">
+    <form action="/courses/edit" method="POST">
+        <div class="input-field">
+            <input id="title" name="title" type="text" class="validate white-text" required value={{course.title}}>
+            <label for="title">Название курса</label>
+            <span class="helper-text" data-error="Введите наименование курса"></span>
+        </div>
+        <div class="input-field">
+            <input id="price" name="price" type="number" class="validate white-text" required min="1"
+                value={{course.price}}>
+            <label for="price">Цена</label>
+            <span class="helper-text" data-error="Укажите цену"></span>
+        </div>
+        <div class="input-field">
+            <input id="img" name="img" type="text" class="validate white-text" required value={{course.img}}>
+            <label for="img">URL картинки</label>
+            <span class="helper-text" data-error="Укажите ссылку на картинку"></span>
+        </div>
+        <input type="hidden" name="id" value={{course.id}}>
+        <button type="submit" class="btn btn-primary">Изменить</button>
+    </form>
+    <div class="absolute">
+        <form action="/courses/delete" method="POST">
+            <input type="hidden" name="id" value={{course.id}}>
+            <button type="submit" class="btn waves-effect red" data-id="{{id}}">remove</button>
+        </form>
     </div>
-    <div class="input-field">
-        <input id="price" name="price" type="number" class="validate white-text" required min="1"
-            value={{course.price}}>
-        <label for="price">Цена</label>
-        <span class="helper-text" data-error="Укажите цену"></span>
-    </div>
-    <div class="input-field">
-        <input id="img" name="img" type="text" class="validate white-text" required value={{course.img}}>
-        <label for="img">URL картинки</label>
-        <span class="helper-text" data-error="Укажите ссылку на картинку"></span>
-    </div>
-    <input type="hidden" name="id" value={{course.id}}>
-    <button type="submit" class="btn btn-primary">Изменить</button>
-</form>
-
-<form action="/courses/delete" style="margin: 2em 0;" method="POST">
-    <input type="hidden" name="id" value={{course.id}}>
-    <button type="submit" class="btn waves-effect red" data-id="{{id}}">remove</button>
-</form>
+</div>

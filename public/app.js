@@ -24,6 +24,42 @@ document.querySelectorAll(".date").forEach((node) => {
   node.textContent = toDate(node.textContent);
 });
 
+// slider for main
+const container = document.querySelector(".header");
+const images = [
+  "https://images.unsplash.com/photo-1544256718-3bcf237f3974?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80",
+  "https://images.unsplash.com/photo-1546900703-cf06143d1239?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80",
+  "https://images.unsplash.com/photo-1503437313881-503a91226402?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80",
+  "https://images.unsplash.com/photo-1534972195531-d756b9bfa9f2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80",
+  "https://images.unsplash.com/photo-1564865878688-9a244444042a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8cHJvZ3JhbW1pbmd8ZW58MHx8MHx8&w=1000&q=80",
+];
+const headers = ["Frontend", "HTML и CSS", "JavaScript", "Node.js", "React"];
+
+if (container) {
+  window.addEventListener("DOMContentLoaded", () => {
+    headers.forEach((slide, i) => {
+      document.querySelector(".header").insertAdjacentHTML(
+        "beforeend",
+        `<div class="slide" style="background-image: url(${images[i]});">
+              <h3>${slide}</h3>
+            </div>`
+      );
+    });
+  });
+
+  container.addEventListener("click", (e) => {
+    clearActivaClass();
+    e.target.classList.add("active_flex");
+  });
+
+  function clearActivaClass() {
+    const slider = document.querySelectorAll(".slide");
+    slider.forEach((element) => {
+      element.classList.remove("active_flex");
+    });
+  }
+}
+
 if (document.querySelectorAll(".tabs")) {
   M.Tabs.init(document.querySelectorAll(".tabs"));
 }
