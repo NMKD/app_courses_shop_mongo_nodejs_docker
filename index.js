@@ -48,7 +48,7 @@ app.use(
         directives: {
             "default-src": ["'self'"],
             "script-src": ["'self'", "https://*.cloudflare.com", "*.googleapis.com"],
-            "style-src": ["'self'", "https://*.cloudflare.com", "*.googleapis.com", "https://*.unsplash.com", "unsafe-inline"],
+            "style-src": ["'self'", "https://*.cloudflare.com", "*.googleapis.com", "https://*.unsplash.com"],
             "img-src": ["'self'", "*"],
             "font-src": ["'self'", "*"],
             "object-src": ["'none'"]
