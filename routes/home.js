@@ -1,12 +1,12 @@
-const {Router} = require('express')
-const router = Router()
+const { Router } = require("express");
+const router = Router();
 
-router.get('/', (req, res) => {
-    res.render('index', {
-        layout: 'home',
-        title: "Купить курс по программированию",
-        isHome: true
-    })
-})
+router.get("/", (req, res) => {
+  res.render("index", {
+    layout: "home",
+    title: "Купить курс по программированию",
+    isHome: true,
+  });
+});
 
-module.exports = router
+module.exports = router;

@@ -9,7 +9,7 @@ router.get("/", auth, (req, res) => {
   try {
     res.render("add", {
       title: "Добавить курс",
-      isAdd: true
+      isAdd: true,
     });
   } catch (e) {
     console.log(e);
