@@ -2,6 +2,9 @@
 
 <div class="relative">
     <form action="/courses/edit" method="POST">
+        {{#if errors}}
+        <p class="alert">{{errors}}</p>
+        {{/if}}
         <div class="input-field">
             <input id="title" name="title" type="text" class="validate white-text" required value={{course.title}}>
             <label for="title">Название курса</label>

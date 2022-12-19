@@ -1,18 +1,21 @@
 <h1>Добавить новый курс</h1>
 
 <form action="/add" method="POST">
+    {{#if errors}}
+    <p class="alert">{{errors}}</p>
+    {{/if}}
     <div class="input-field">
-        <input id="title" name="title" type="text" class="validate white-text" required>
+        <input id="title" name="title" type="text" class="validate white-text" value="{{data.title}}" required>
         <label for="title">Название курса</label>
         <span class="helper-text" data-error="Введите наименование курса"></span>
     </div>
     <div class="input-field">
-        <input id="price" name="price" type="number" class="validate white-text" required min="1">
+        <input id="price" name="price" type="number" class="validate white-text" value="{{data.price}}" required min="1">
         <label for="price">Цена</label>
         <span class="helper-text" data-error="Укажите цену"></span>
     </div>
     <div class="input-field">
-        <input id="img" name="img" type="text" class="validate white-text" required>
+        <input id="img" name="img" type="text" class="validate white-text" value="{{data.img}}" required>
         <label for="img">URL картинки</label>
         <span class="helper-text" data-error="Укажите ссылку на картинку"></span>
     </div>

@@ -66,7 +66,7 @@ app.use('/courses', require('./routes/courses'))
 app.use('/card', require('./routes/card'))
 app.use('/orders', require('./routes/orders'))
 app.use('/auth', require('./routes/auth'))
-
+app.use(require('./middleware/404'))
 
 const PORT = process.env.PORT || 3000
 // mongo db DOCKER
