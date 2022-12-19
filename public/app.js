@@ -45,6 +45,7 @@ if (container) {
             </div>`
       );
     });
+    document.querySelectorAll('.slide')[3].classList.add('active_flex')
   });
 
   container.addEventListener("click", (e) => {
