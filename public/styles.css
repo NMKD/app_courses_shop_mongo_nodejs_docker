@@ -53,7 +53,7 @@ body {
     height: auto;
 }
 
-.card.card-height{
+.card.card-height {
     max-height: 25%;
 }
 
@@ -112,7 +112,7 @@ body {
 
 .slide.active_flex h3 {
     opacity: 1;
-    transition:  opacity 0.3s ease-in 0.4s;
+    transition: opacity 0.3s ease-in 0.4s;
 }
 
 /* for register && login - ALERT errors */
@@ -135,4 +135,15 @@ body {
 
 .relative {
     position: relative;
+}
+
+/* Profile */
+
+.none-margin--top {
+    margin-top: 0;
+}
+
+.avatar-img {
+    max-width: 100%;
+    height: auto;
 }
