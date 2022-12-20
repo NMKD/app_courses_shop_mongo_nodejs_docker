@@ -39,6 +39,31 @@ exports.registerValidators = [
     .trim(),
 ];
 
+exports.loginValidators = [
+  body("email")
+    .isEmail()
+    .withMessage("Не верно введен Email")
+    .custom(async (value, { req }) => {
+      try {
+        const user = await User.findOne({ email: value });
+        if (!user) {
+          return Promise.reject("Такого пользователя не существует");
+        }
+      } catch (e) {
+        console.log(e);
+      }
+    })
+    .normalizeEmail()
+    .trim(),
+  body(
+    "password",
+    "Пароль должен быть минимум 8 символов и содержать латинские заглавные и строчные буквы"
+  )
+    .isLength({ min: 8, max: 32 })
+    .isAlphanumeric()
+    .trim(),
+];
+
 exports.courseValidators = [
   body("title")
     .isLength({ min: 3 })

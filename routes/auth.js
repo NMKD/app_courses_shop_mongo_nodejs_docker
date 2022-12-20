@@ -4,7 +4,7 @@ const bcrypt = require("bcryptjs");
 const crypto = require("crypto");
 const { validationResult } = require("express-validator");
 const transporter = require("../middleware/mail");
-const { registerValidators } = require("../utils/validation");
+const { registerValidators, loginValidators } = require("../utils/validation");
 const router = Router();
 
 router.get("/login", (req, res) => {
@@ -22,11 +22,16 @@ router.get("/logout", async (req, res) => {
   });
 });
 
-router.post("/login", async (req, res) => {
+router.post("/login", loginValidators, async (req, res) => {
   try {
     const { email, password } = req.body;
     const candidate = await User.findOne({ email });
     console.log(candidate);
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      req.flash("errorLogin", errors.array()[0].msg);
+      return res.status(400).redirect("/auth/login#login");
+    }
     if (candidate) {
       const passIs = await bcrypt.compare(password, candidate.password);
       if (candidate._id.toString() === "63961a4ea6d61fa7075b48c3") {
@@ -42,13 +47,7 @@ router.post("/login", async (req, res) => {
           }
           res.redirect("/");
         });
-      } else {
-        req.flash("errorLogin", "Пароль неверный");
-        res.redirect("/auth/login#login");
       }
-    } else {
-      req.flash("errorLogin", "Такого пользователя не существует");
-      res.redirect("/auth/login#register");
     }
   } catch (err) {
     console.log(err);
@@ -104,8 +103,9 @@ router.get("/reset", (req, res) => {
   });
 });
 
-router.post("/reset", (req, res) => {
+router.post("/reset", async (req, res) => {
   try {
+    let emailTransporter = await transporter();
     crypto.randomBytes(16, async (err, buffer) => {
       if (err) {
         req.flash("error", "Что-то пошло не так, повторите попытку позже");
@@ -113,14 +113,12 @@ router.post("/reset", (req, res) => {
       }
       let token = buffer.toString("hex");
       const user = await User.findOne({ email: req.body.email });
-
       if (user) {
         user.resetToken = token;
         user.resetTokenExp = Date.now() + 60 * 60 * 1000;
         await user.save();
         console.log(user);
         res.redirect("/auth/login");
-        let emailTransporter = await transporter();
         emailTransporter.sendMail(
           {
             from: process.env.SENDER_EMAIL,
@@ -150,11 +148,9 @@ router.post("/reset", (req, res) => {
           },
           function (err, info) {
             if (err) {
-              console.log(err);
+              console.log(err)
             } else {
-              console.log(
-                "Письмо отправлено на адрес:" + user.email + info.response
-              );
+              console.log("Письмо отправлено на адрес:" + user.email + info.response)
             }
           }
         );
@@ -164,7 +160,7 @@ router.post("/reset", (req, res) => {
       }
     });
   } catch (e) {
-    console.log(e);
+    console.log(e)
   }
 });
 
