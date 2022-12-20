@@ -34,7 +34,7 @@ router.post("/login", loginValidators, async (req, res) => {
     }
     if (candidate) {
       const passIs = await bcrypt.compare(password, candidate.password);
-      if (candidate._id.toString() === "63961a4ea6d61fa7075b48c3") {
+      if (candidate._id.toString() === "63a1eb9bda8eea77d9d5ff2a") {
         req.session.isAdmin = true;
       }
       if (passIs) {

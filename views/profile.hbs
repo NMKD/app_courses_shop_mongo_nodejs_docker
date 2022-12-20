@@ -3,13 +3,19 @@
 <div class="row">
 
     <div class="col s4">
+        {{#if user.avatarURL}}
+        <img class="avatar-img" src="/{{user.avatarURL}}" alt="Аватар" />
+        {{else}}
         <img class="avatar-img"
             src="https://images.unsplash.com/photo-1618685959528-2700ba389504?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80"
             alt="Аватар" />
+        {{/if}}
     </div>
 
+
+
     <div class="col s8">
-        <form action="/profile" method="post">
+        <form action="/profile" method="post" enctype="multipart/form-data">
             <h4 class="none-margin--top">Информация</h4>
             <div class="input-field inline">
                 <input id="text" name="name" type="text" class="validate white-text" value="{{user.name}}" required>
@@ -37,3 +43,25 @@
     </div>
 
 </div>
+
+{{#if isAdmin}}
+<div class="row section">
+    <div><a href="/allusers" class="btn red">выгрузить пользователей</a></div>
+    <div>
+        <ul class="collection">
+            {{#each users}}
+            <form action="/allusers/remove/:{{id}}" method="post">
+                <li class="collection-item avatar black">
+                    <i class="material-icons circle green">insert_chart</i>
+                    <span class="title">User - {{name}}</span>
+                    <p>Email: {{email}}<br>
+                    <button type="submit">remove</button>
+                </li>
+            </form>
+            {{/each}}
+        </ul>
+
+    </div>
+</div>
+
+{{/if}}

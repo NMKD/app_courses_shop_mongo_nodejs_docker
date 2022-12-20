@@ -36,6 +36,7 @@ app.set("view engine", "hbs");
 app.set("views", "views");
 
 app.use(express.static(path.join(__dirname, "public")));
+app.use('/images', express.static(path.join(__dirname, "images")));
 app.use(express.urlencoded({ extended: true }));
 app.use(
   session({
@@ -82,6 +83,7 @@ app.use("/card", require("./routes/card"));
 app.use("/orders", require("./routes/orders"));
 app.use("/auth", require("./routes/auth"));
 app.use("/profile", require("./routes/profile"));
+app.use("/allusers", require("./routes/admin"));
 app.use(require("./middleware/404"));
 
 const PORT = process.env.PORT || 3000;
