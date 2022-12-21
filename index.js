@@ -5,6 +5,7 @@ const flesh = require("connect-flash");
 const exphbs = require("express-handlebars");
 const session = require("express-session");
 const MongoStore = require("connect-mongodb-session")(session);
+const comprassion = require('compression')
 const {
   allowInsecurePrototypeAccess,
 } = require("@handlebars/allow-prototype-access");
@@ -72,6 +73,7 @@ app.use(
 );
 
 app.disable("x-powered-by");
+app.use(comprassion())
 app.use(flesh());
 app.use(require("./middleware/variables"));
 app.use(require("./middleware/user"));
