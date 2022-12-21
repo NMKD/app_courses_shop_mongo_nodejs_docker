@@ -22,7 +22,7 @@ router.get("/", async (req, res) => {
 
 router.post("/remove/:id", async (req, res) => {
   try {
-    await User.deleteOne({ id: req.params.id });
+    await User.deleteOne({ _id: req.params.id });
     res.redirect("/profile");
   } catch (e) {
     console.log(e);
